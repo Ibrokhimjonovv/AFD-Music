@@ -30,8 +30,8 @@ export const robotoSlab = Roboto_Slab({
 })
 
 export const metadata = {
-  title: "AFD Music - Barcha qo'shiqlar bizda!",
-  description: "AFD Music - Barcha qo'shiqlarni bepulga tinglang va yuklab oling!",
+  title: "AFD Music - We have all the songs!",
+  description: "AFD Music - Listen and download all songs for free!",
 };
 
 export default function RootLayout({ children }) {

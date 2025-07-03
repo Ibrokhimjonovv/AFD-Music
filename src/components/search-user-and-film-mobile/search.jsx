@@ -17,13 +17,6 @@ const SearchM = ({ c }) => {
   const { films, setFilms, userData, filmsDepartment } = useContext(AccessContext);
   const [modal, setModal] = useState(false);
   const searchInputRef = useRef(null); // Input uchun ref
-  const formatFilmNameForURL = (name) => {
-    return name
-      .toLowerCase()
-      .replace(/\s+/g, "-")
-      .replace(/[^a-z0-9-]/g, "");
-  };
-
   const modalRef = useRef(null); // Modal uchun yangi ref
 
   useEffect(() => {
@@ -61,62 +54,12 @@ const SearchM = ({ c }) => {
     }
   }, [modal]);
 
-  // useEffect(() => {
-  //   const fetchAllFilms = async () => {
-  //     setLoading(true);
-  //     try {
-  //       // Fetching films
-  //       const fetchAllFilms = await fetch(`${global_api}/movies/`);
-  //       if (!fetchAllFilms.ok) {
-  //         throw new Error("Filmlar olishda xatolik");
-  //       }
-  //       const filmsData = await fetchAllFilms.json();
-  //       setFilms(filmsData);
-  //     } catch (error) {
-  //       setError(error.message);
-  //     } finally {
-  //       setLoading(false);
-  //     }
-  //   };
-
-  //   fetchAllFilms();
-  // }, []);
-
-  const handleSearchInput = (e) => {
-    const query = e.target.value.toLowerCase();
-    setSearchQuery(query);
-
-    if (films && query.length > 1) {
-      const suggestions = films.filter((film) =>
-        film.movies_name.toLowerCase().includes(query)
-      );
-      setSuggestedFilms(suggestions);
-    } else {
-      setSuggestedFilms([]);
-    }
-  };
-
   const clearInput = () => {
     setSearchQuery("");
     setModal(false);
     c(false);
   };
 
-  const handleFilmSelect = (filmName, filmId) => {
-    setSearchQuery(filmName);
-    setSuggestedFilms([]);
-  };
-
-  const formatDate = (dateString) => {
-    const date = new Date(dateString);
-    const day = String(date.getDate()).padStart(2, "0");
-    const month = String(date.getMonth() + 1).padStart(2, "0");
-    const year = date.getFullYear();
-    const hours = String(date.getHours()).padStart(2, "0");
-    const minutes = String(date.getMinutes()).padStart(2, "0");
-
-    return `${day}.${month}.${year} ${hours}:${minutes}`;
-  };
 
   return (
     <div id="search-films-users-mob">
@@ -141,7 +84,6 @@ const SearchM = ({ c }) => {
               type="text"
               placeholder="Search music or artist name..."
               value={searchQuery}
-              onChange={handleSearchInput}
               autoComplete="off" // "false" emas, "off" bo'lishi kerak
               ref={searchInputRef} // Ref ni qo'shish
             />
@@ -186,32 +128,6 @@ const SearchM = ({ c }) => {
                 Sorry, it seems we don't have this kind of music yet:
                 <span>(</span>
               </h2>
-            )}
-            {suggestedFilms.length > 0 && (
-              <div className="suggestions">
-                {suggestedFilms.map((music) => (
-                  <div key={music.id}>
-                    <Link
-                      href={`/${music.add_departments}/${formatFilmNameForURL(
-                        filmsDepartment.find(
-                          (dep) => dep.id === music.add_departments
-                        )?.department_name || "Unknown"
-                      )}/${music.id}/${formatFilmNameForURL(music.movies_name)}`}
-                      onClick={() => {
-                        handleFilmSelect(music.movies_name, music.id);
-                        clearInput();
-                      }}
-                    >
-                      <div className="s-left">
-                        <span>{music.movies_name}</span>
-                      </div>
-                      <div className="s-right">
-                        <img src={music.movies_preview_url} alt="" />
-                      </div>
-                    </Link>
-                  </div>
-                ))}
-              </div>
             )}
           </div>
         </div>

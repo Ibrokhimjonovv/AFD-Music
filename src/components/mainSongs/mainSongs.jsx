@@ -1,16 +1,20 @@
 'use client';
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useContext } from 'react';
 import "./mainSongs.scss"
 import Link from 'next/link';
-
 import 'swiper/css';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { AccessContext } from '@/context/context';
 
 const MainSongs = () => {
+    const { togglePlayPause, currentSongId, isPlaying, popularMusic } = useContext(AccessContext);
+
     const [activeCategory, setActiveCategory] = useState("All");
     const swiperRef = useRef(null);
     const [isBeginning, setIsBeginning] = useState(true);
     const [isEnd, setIsEnd] = useState(false);
+    const [currentPlayingId, setCurrentPlayingId] = useState(null);
+    const audioRef = useRef(null);
 
     const categories = ["All", "Music", "Podcasts"];
 
@@ -24,39 +28,8 @@ const MainSongs = () => {
         }
     ];
 
-    // Popular Music data
-    const popularMusic = [
-        {
-            id: 1,
-            imageUrl: "https://i.scdn.co/image/ab67616d00001e0233b7d4d2036d06202a8f22a1",
-            title: "I AM",
-            artist: "MACAN"
-        },
-        {
-            id: 2,
-            imageUrl: "https://m.media-amazon.com/images/I/511bCT+EtQL._AC_UF894,1000_QL80_.jpg",
-            title: "Blinding Lights",
-            artist: "The Weeknd"
-        },
-        {
-            id: 3,
-            imageUrl: "https://m.media-amazon.com/images/I/511bCT+EtQL._AC_UF894,1000_QL80_.jpg",
-            title: "Star Boy",
-            artist: "The Weeknd"
-        },
-        {
-            id: 4,
-            imageUrl: "https://i.scdn.co/image/ab67616d00001e02ff9ca10b55ce82ae553c8228",
-            title: "Dynamite",
-            artist: "BTS"
-        },
-        {
-            id: 5,
-            imageUrl: "https://i.scdn.co/image/ab67616d00001e02ff9ca10b55ce82ae553c8228",
-            title: "Shape of You",
-            artist: "Ed Sheeran"
-        }
-    ];
+    // Popular Music data with audio URLs
+
 
     useEffect(() => {
         if (swiperRef.current) {
@@ -65,7 +38,19 @@ const MainSongs = () => {
                 setIsEnd(swiperRef.current.isEnd);
             });
         }
+
+        // Clean up audio on unmount
+        return () => {
+            if (audioRef.current) {
+                audioRef.current.pause();
+                audioRef.current = null;
+            }
+        };
     }, []);
+
+    const handleSongPlay = (music) => {
+        togglePlayPause(music);
+    };
 
     return (
         <div id='main-songs'>
@@ -106,7 +91,7 @@ const MainSongs = () => {
                 ))}
             </div>
 
-            <div id="yandex_rtb_R-A-16116744-1">
+            {/* <div id="yandex_rtb_R-A-16116744-1">
                 <script
                     dangerouslySetInnerHTML={{
                         __html: `
@@ -120,7 +105,7 @@ const MainSongs = () => {
           `,
                     }}
                 />
-            </div>
+            </div> */}
 
             <h1 className='name'>
                 <Link href='#'>Popular albums and Singles</Link>
@@ -161,14 +146,22 @@ const MainSongs = () => {
                         {popularMusic.map((music) => (
                             <SwiperSlide key={music.id}>
                                 <div className="popular-albums">
-                                    <Link href="#">
+                                    <Link href='#' className="song-container">
                                         <div className="discover-img">
                                             <img src={music.imageUrl} />
-                                            <div className="play-icon">
+                                            <button
+                                                className={`play-icon ${currentSongId === music.id && isPlaying ? 'playing' : ''}`}
+                                                onClick={() => handleSongPlay(music)}
+
+                                            >
                                                 <svg data-encore-id="icon" role="img" aria-hidden="true" className="e-9960-icon e-9960-baseline" viewBox="0 0 24 24">
-                                                    <path d="m7.05 3.606 13.49 7.788a.7.7 0 0 1 0 1.212L7.05 20.394A.7.7 0 0 1 6 19.788V4.212a.7.7 0 0 1 1.05-.606"></path>
+                                                    {currentSongId === music.id && isPlaying ? (
+                                                        <path d="M5.7 3a.7.7 0 0 0-.7.7v16.6a.7.7 0 0 0 .7.7h2.6a.7.7 0 0 0 .7-.7V3.7a.7.7 0 0 0-.7-.7H5.7zm10 0a.7.7 0 0 0-.7.7v16.6a.7.7 0 0 0 .7.7h2.6a.7.7 0 0 0 .7-.7V3.7a.7.7 0 0 0-.7-.7h-2.6z"></path>
+                                                    ) : (
+                                                        <path d="m7.05 3.606 13.49 7.788a.7.7 0 0 1 0 1.212L7.05 20.394A.7.7 0 0 1 6 19.788V4.212a.7.7 0 0 1 1.05-.606z"></path>
+                                                    )}
                                                 </svg>
-                                            </div>
+                                            </button>
                                         </div>
                                         <p id='music-name'>{music.title}</p>
                                         <p id='music-author'>{music.artist}</p>

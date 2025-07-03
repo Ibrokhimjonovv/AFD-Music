@@ -17,13 +17,25 @@
 /* styles.css */
 
 #main-container {
-  display: flex;
-  margin: 7px;
-  // background-color: #000;
-  gap: 7px;
-  min-height: 70vh;
-  max-height: 70vh;
-  margin-top: 97px;
+  .main-container-top {
+    display: flex;
+    margin: 7px;
+    gap: 7px;
+    min-height: 70vh;
+    max-height: 70vh;
+    margin-top: 97px;
+  }
+  .main-container-bottom {
+    margin: 7px;
+    min-height: 12.7vh;
+    max-height: 12.7vh;
+    background-color: #1a1f2a;
+    border-radius: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10px;
+  }
 }
 body {
   background-color: #10131c;
