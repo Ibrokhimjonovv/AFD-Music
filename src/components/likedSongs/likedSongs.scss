@@ -1,0 +1,190 @@
+#liked-container {
+  width: 25%;
+  background-color: #1a1f2a;
+  border-radius: 10px;
+  padding: 15px;
+
+  .liked-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #fff;
+
+    p {
+      font-size: 15px;
+      font-weight: 500;
+    }
+
+    &-actions {
+      display: flex;
+      gap: 10px;
+      button {
+        background-color: transparent;
+        border: none;
+        fill: #ababab;
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+
+        svg {
+          width: 19px;
+        }
+
+        &:first-child {
+          background-color: #232a39;
+        }
+
+        &:last-child {
+          svg {
+            width: 18px;
+          }
+        }
+
+        &:hover {
+          background-color: #2e3749;
+        }
+      }
+    }
+  }
+
+  .liked-search-recents {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    position: relative;
+
+    svg {
+      width: 19px;
+    }
+
+    button {
+      background-color: transparent;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: none;
+      fill: #ababab;
+
+      &.open-search-btn {
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+
+        svg {
+          width: 17px;
+        }
+
+        &:hover {
+          background-color: #2e3749;
+        }
+      }
+    }
+
+    .liked-search {
+      display: flex;
+      position: relative;
+
+      .open-search-btn {
+        position: relative;
+        z-index: 1;
+      }
+
+      .liked-search-input {
+        opacity: 0;
+        width: 0;
+        overflow: hidden;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        left: 0;
+        border-radius: 5px;
+        background-color: #2e3749;
+
+        &.focused {
+          opacity: 1;
+          width: 205px;
+        }
+
+        input {
+          color: #fff;
+          margin-left: 35px;
+          border: none;
+          background-color: transparent;
+          height: 36px;
+          padding-right: 5px;
+        }
+      }
+    }
+
+    .recent-btn {
+      color: #ababab;
+      fill: #ababab;
+      transition: none;
+      display: flex;
+      gap: 5px;
+      font-weight: 500;
+      font-size: 15px;
+
+      span {
+        &.hide {
+          opacity: 0;
+          transform: translate(20px);
+          position: relative;
+        }
+      }
+
+      &:hover {
+        color: #cfcdcd;
+        fill: #cfcdcd;
+        transform: scale(1.03);
+      }
+    }
+    .recent-modal {
+      position: absolute;
+      right: 0;
+      top: 40px;
+      width: 200px;
+      background-color: #10131c;
+      border-radius: 7px;
+      padding: 15px 0 5px;
+
+      p {
+        padding: 0 15px;
+        color: #ababab;
+        font-size: 12px;
+        font-weight: 500;
+      }
+
+      .recent-actions {
+        margin-top: 10px;
+        button {
+          margin-top: 5px;
+          height: 40px;
+          font-size: 14px;
+          color: #cfcdcd;
+          display: flex;
+          justify-content: space-between;
+          width: 93%;
+          margin: 0 auto;
+          padding-left: 10px;
+          padding-right: 10px;
+          border-radius: 3px;
+
+          &:hover {
+            background-color: #1a1f2a;
+          }
+
+          &.active {
+            fill: #1ed760;
+            color: #1ed760;
+          }
+        }
+      }
+    }
+  }
+}

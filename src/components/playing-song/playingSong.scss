@@ -1,0 +1,71 @@
+#current-song {
+  width: 25%;
+  background-color: #1a1f2a;
+  border-radius: 10px;
+
+  .bar {
+    padding: 0 15px;
+    height: 60px;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    position: fixed;
+
+    a {
+      color: #fff;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+  .current-song-details {
+    padding: 0 15px 0;
+    margin-top: 60px;
+    overflow-y: auto;
+    height: calc(70vh - 60px);
+
+    /* Scrollbar umumiy qismi */
+    &::-webkit-scrollbar {
+      width: 12px; /* vertical scroll uchun */
+      height: 10px !important; /* horizontal scroll uchun */
+    }
+
+    /* Scrollbar track (fondi) */
+    &::-webkit-scrollbar-track {
+      background: transparent;
+      border-radius: 10px;
+    }
+
+    /* Scrollbar thumb (harakatlanuvchi qismi) */
+    &::-webkit-scrollbar-thumb {
+      background: #4d4b4b;
+    }
+
+    /* Hover holatdagi thumb */
+    &::-webkit-scrollbar-thumb:hover {
+      background: #555;
+    }
+
+    .song-img {
+      width: 100%;
+
+      img {
+        border-radius: 7px;
+        width: 100%;
+        object-fit: contain;
+      }
+    }
+
+    .song-name {
+      font-size: 22px;
+      font-weight: 500;
+      color: #fff;
+    }
+
+    .song-author {
+      color: #b3b3b3;
+      font-size: 16px;
+      font-weight: 500;
+    }
+  }
+}

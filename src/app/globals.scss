@@ -1,0 +1,95 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  transition: all 0.3s;
+  font-family: var(--font-poppins);
+  text-decoration: none;
+  list-style: none;
+  scroll-behavior: smooth;
+  outline: none;
+}
+
+*::selection {
+  background-color: transparent;
+}
+
+/* styles.css */
+
+#main-container {
+  display: flex;
+  margin: 7px;
+  // background-color: #000;
+  gap: 7px;
+  min-height: 70vh;
+  max-height: 70vh;
+  margin-top: 97px;
+}
+body {
+  background-color: #10131c;
+
+  .logo-light {
+    display: none;
+  }
+
+  .not-found {
+    color: #fff;
+  }
+
+  header {
+    .header-container {
+      .search {
+        input {
+          color: #fff;
+        }
+      }
+    }
+  }
+
+  #name {
+    a {
+      color: #fff !important;
+    }
+  }
+}
+
+.save-login {
+  height: unset !important;
+  width: unset !important;
+  display: unset !important;
+}
+
+.views {
+  position: absolute;
+  z-index: 20;
+  top: 0;
+  width: 100%;
+  left: 0;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .series {
+    padding: 0 10px;
+    border-radius: 5px;
+    background-color: #0000004d;
+    color: #f79623;
+  }
+
+  .count {
+    background-color: #fff;
+    padding: 3px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    gap: 5px;
+    color: #10131c;
+
+    svg {
+      width: 18px;
+      height: 18px;
+    }
+  }
+}
