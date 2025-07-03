@@ -106,6 +106,22 @@ const MainSongs = () => {
                 ))}
             </div>
 
+            <div id="yandex_rtb_R-A-16116744-1">
+                <script
+                    dangerouslySetInnerHTML={{
+                        __html: `
+            window.yaContextCb = window.yaContextCb || [];
+            window.yaContextCb.push(() => {
+              Ya.Context.AdvManager.render({
+                blockId: "R-A-16116744-1",
+                renderTo: "yandex_rtb_R-A-16116744-1"
+              });
+            });
+          `,
+                    }}
+                />
+            </div>
+
             <h1 className='name'>
                 <Link href='#'>Popular albums and Singles</Link>
                 <Link href="#">Show all</Link>
@@ -113,16 +129,16 @@ const MainSongs = () => {
 
             <div className="popular-albums-container">
                 <div className="swiper-controls">
-                    <button 
+                    <button
                         className={`swiper-button-prev ${isBeginning ? 'disabled' : ''}`}
                         onClick={() => !isBeginning && swiperRef.current?.slidePrev()}
                         disabled={isBeginning}
                     >
                         <svg viewBox="0 0 24 24">
-                            <path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"/>
+                            <path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z" />
                         </svg>
                     </button>
-                    
+
                     <Swiper
                         slidesPerView={3}
                         spaceBetween={10}
@@ -147,7 +163,7 @@ const MainSongs = () => {
                                 <div className="popular-albums">
                                     <Link href="#">
                                         <div className="discover-img">
-                                            <img src={music.imageUrl}/>
+                                            <img src={music.imageUrl} />
                                             <div className="play-icon">
                                                 <svg data-encore-id="icon" role="img" aria-hidden="true" className="e-9960-icon e-9960-baseline" viewBox="0 0 24 24">
                                                     <path d="m7.05 3.606 13.49 7.788a.7.7 0 0 1 0 1.212L7.05 20.394A.7.7 0 0 1 6 19.788V4.212a.7.7 0 0 1 1.05-.606"></path>
@@ -161,14 +177,14 @@ const MainSongs = () => {
                             </SwiperSlide>
                         ))}
                     </Swiper>
-                    
-                    <button 
+
+                    <button
                         className={`swiper-button-next ${isEnd ? 'disabled' : ''}`}
                         onClick={() => !isEnd && swiperRef.current?.slideNext()}
                         disabled={isEnd}
                     >
                         <svg viewBox="0 0 24 24">
-                            <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/>
+                            <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z" />
                         </svg>
                     </button>
                 </div>
