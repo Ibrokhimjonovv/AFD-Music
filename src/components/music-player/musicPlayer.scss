@@ -41,7 +41,7 @@
         font-size: 14px;
 
         &:hover {
-            text-decoration: underline;
+          text-decoration: underline;
         }
 
         &:last-child {
@@ -89,6 +89,28 @@
       justify-content: center;
       align-items: center;
       cursor: pointer;
+      position: relative;
+
+      &::before {
+        position: absolute;
+        content: "";
+        width: 5px;
+        height: 5px;
+        background-color: #f29925;
+        border-radius: 50%;
+        bottom: -5px;
+        display: none;
+      }
+
+      &.active {
+        &::before {
+          display: inline-block;
+        }
+
+        svg {
+          fill: #f29925 !important;
+        }
+      }
 
       &:hover {
         svg {

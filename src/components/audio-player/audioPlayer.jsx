@@ -5,7 +5,7 @@ import './audioPlayer.scss';
 import { AccessContext } from '@/context/context';
 
 const AudioPlayer = () => {
-    const { playingSong, isPlaying, togglePlayPause, audioRef, setIsPlaying, playPreviousSong, playNextSong, isRepeat, setIsRepeat, isRepeatCount, setIsRepeatCount, shuffleMode, setShuffleMode,setPlayedShuffleIds,  } = useContext(AccessContext);
+    const { playingSong, isPlaying, togglePlayPause, audioRef, setIsPlaying, playPreviousSong, playNextSong, isRepeat, setIsRepeat, isRepeatCount, setIsRepeatCount, shuffleMode, setShuffleMode, setPlayedShuffleIds, } = useContext(AccessContext);
     const [progress, setProgress] = useState(0);
     const [duration, setDuration] = useState(0);
     const [currentTime, setCurrentTime] = useState(0);

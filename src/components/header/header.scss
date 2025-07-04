@@ -1,5 +1,5 @@
 header {
-    min-height: 90px;
+    min-height: 70px;
     background-color: #1E222B;
     padding: 0 50px;
     position: fixed;
@@ -24,7 +24,7 @@ header {
         margin: 0 auto;
 
         .logo {
-            width: 200px;
+            width: 160px;
 
             img {
                 width: 100%;
@@ -314,13 +314,8 @@ header {
     }
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 749px) {
     header {
-
-        .header-container {
-            .search {
-                align-self: flex-end;
-            }
-        }
+        display: none;
     }
 }

@@ -9,7 +9,7 @@ import { AccessContext } from '@/context/context';
 const MusicPlayer = () => {
     const [volume, setVolume] = useState(0.7); // Default volume (70%)
     const [isMuted, setIsMuted] = useState(false);
-    const { audioRef, playingSong } = useContext(AccessContext)
+    const { audioRef, playingSong, isRightPlayingSong, setIsRightPlayingSong, likedSongs, toggleLike } = useContext(AccessContext)
     const [isDraggingVolume, setIsDraggingVolume] = useState(false);
     const volumeSliderRef = useRef(null);
 
@@ -61,6 +61,7 @@ const MusicPlayer = () => {
         updateVolume(e);
     };
 
+    const isLiked = likedSongs.some((s) => s.id === playingSong?.id);
 
     return (
         <div id='player'>
@@ -72,26 +73,47 @@ const MusicPlayer = () => {
                     <Link href="#">{playingSong ? playingSong.title : "Loading..."}</Link>
                     <Link href='#'>{playingSong ? playingSong.artist : "Loading..."}</Link>
                 </div>
-                <button className="add-to-liked">
-                    <svg
-                        data-encore-id="icon"
-                        role="img"
-                        aria-hidden="true"
-                        className="e-9960-icon e-9960-baseline"
-                        viewBox="0 0 16 16"
-                        style={{
-                            '--encore-icon-height': 'var(--encore-graphic-size-decorative-smaller)',
-                            '--encore-icon-width': 'var(--encore-graphic-size-decorative-smaller)',
-                        }}
-                    >
-                        <path d="M8 1.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8" />
-                        <path d="M11.75 8a.75.75 0 0 1-.75.75H8.75V11a.75.75 0 0 1-1.5 0V8.75H5a.75.75 0 0 1 0-1.5h2.25V5a.75.75 0 0 1 1.5 0v2.25H11a.75.75 0 0 1 .75.75" />
-                    </svg>
+                <button className="add-to-liked" onClick={() => toggleLike(playingSong)}>
+                    {
+                        isLiked ? (
+                            <svg
+                                fill="#2ed16d"
+                                data-encore-id="icon"
+                                role="img"
+                                aria-hidden="true"
+                                className="e-9960-icon e-9960-baseline"
+                                viewBox="0 0 16 16"
+                                style={{
+                                    '--encore-icon-fill': 'var(--text-bright-accent, #107434)',
+                                    '--encore-icon-height': 'var(--encore-graphic-size-decorative-smaller)',
+                                    '--encore-icon-width': 'var(--encore-graphic-size-decorative-smaller)',
+                                }}
+                            >
+                                <path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m11.748-1.97a.75.75 0 0 0-1.06-1.06l-4.47 4.47-1.405-1.406a.75.75 0 1 0-1.061 1.06l2.466 2.467 5.53-5.53z" />
+                            </svg>
+
+                        ) : (
+                            <svg
+                                data-encore-id="icon"
+                                role="img"
+                                aria-hidden="true"
+                                className="e-9960-icon e-9960-baseline"
+                                viewBox="0 0 16 16"
+                                style={{
+                                    '--encore-icon-height': 'var(--encore-graphic-size-decorative-smaller)',
+                                    '--encore-icon-width': 'var(--encore-graphic-size-decorative-smaller)',
+                                }}
+                            >
+                                <path d="M8 1.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8" />
+                                <path d="M11.75 8a.75.75 0 0 1-.75.75H8.75V11a.75.75 0 0 1-1.5 0V8.75H5a.75.75 0 0 1 0-1.5h2.25V5a.75.75 0 0 1 1.5 0v2.25H11a.75.75 0 0 1 .75.75" />
+                            </svg>
+                        )
+                    }
                 </button>
             </div>
-            <AudioPlayer/>
+            <AudioPlayer />
             <div className="instructions">
-                <button>
+                <button className={isRightPlayingSong ? "active" : ""} onClick={() => setIsRightPlayingSong(!isRightPlayingSong)}>
                     <svg
                         data-encore-id="icon"
                         role="img"

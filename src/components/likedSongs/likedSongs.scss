@@ -1,14 +1,119 @@
+.hidden-action {
+  display: none !important;
+}
+
+.liked-container-active {
+  width: 80px !important;
+  padding: 7px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+
+  .liked-top {
+    height: 50px !important;
+    .liked-full-btn {
+      position: absolute !important;
+      left: 50% !important;
+      transform: translateX(-50%) !important;
+      opacity: 1 !important;
+      top: 5px !important;
+      svg {
+        width: 25px !important;
+        height: 25px !important;
+      }
+    }
+  }
+  .add-playlist-folder {
+    border: none;
+    fill: #ababab;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    background-color: #232a39;
+
+    svg {
+      width: 19px;
+    }
+
+    &:first-child {
+      background-color: #525968;
+    }
+
+    &:last-child {
+      svg {
+        width: 18px;
+      }
+    }
+
+    &:hover {
+      background-color: #2e3749;
+    }
+  }
+}
+
 #liked-container {
   width: 25%;
   background-color: #1a1f2a;
   border-radius: 10px;
   padding: 15px;
+  padding-top: 0;
+
+  &:hover {
+    .liked-top {
+      .liked-full-btn {
+        opacity: 1;
+        left: 0px;
+      }
+
+      p {
+        position: absolute;
+        margin-left: 35px;
+      }
+
+      .playing-song-actions {
+        opacity: 1;
+      }
+    }
+  }
 
   .liked-top {
     display: flex;
     justify-content: space-between;
     align-items: center;
     color: #fff;
+    position: relative;
+    height: 60px;
+
+    .liked-full-btn {
+      width: 35px;
+      height: 35px;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      left: -20px;
+      opacity: 0;
+      transition-delay: 0.1s;
+      cursor: pointer;
+
+      &:hover {
+        svg {
+          fill: #dddada;
+        }
+      }
+
+      svg {
+        width: 20px;
+        height: 20px;
+        fill: #b3b3b3;
+      }
+    }
 
     p {
       font-size: 15px;
@@ -18,6 +123,8 @@
     &-actions {
       display: flex;
       gap: 10px;
+      position: absolute;
+      right: 0;
       button {
         background-color: transparent;
         border: none;
@@ -187,4 +294,11 @@
       }
     }
   }
+}
+
+
+@media screen and (max-width: 749px) {
+    #liked-container {
+        display: none;
+    }
 }

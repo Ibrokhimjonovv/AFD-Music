@@ -1,3 +1,15 @@
+.main-active-2 {
+  width: calc(50% + (25% - 80px)) !important;
+}
+
+.main-active {
+  width: 75% !important;
+
+  &.main-active-2 {
+    width: calc(75% + (25% - 80px)) !important;
+  }
+}
+
 #main-songs {
   width: 50%;
   // background-color: #1a1f2a;
@@ -223,4 +235,72 @@
         }
     }
   }
+}
+
+.mobile-header {
+  display: none;
+}
+
+@media screen and (max-width: 749px) {
+    #main-songs {
+      width: 100% !important;
+
+      .top-categories, .for-made, .username, .name {
+        padding: 0;
+      }
+
+      .name {
+        a {
+          &:first-child {
+            font-size: 17px;
+          }
+        }
+      }
+      
+      .popular-albums, .weekly-discover {
+        margin-left: 0;
+        margin-right: 0;  
+      }
+
+      .popular-albums-container {
+        .swiper-button-next, .swiper-button-prev {
+          transform: translateX(0);
+          opacity: 1;
+        }
+      }
+
+      .popular-albums {
+        width: 100%;
+
+        .discover-img {
+          max-height: 145px;
+          animation: unset;
+        }
+      }
+
+      .mobile-header {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        align-items: center;
+        color: #fff;
+
+        button {
+          width: 35px;
+          height: 35px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          background-color: transparent;
+          border: none;
+          cursor: pointer;
+
+          svg {
+            fill: #fff;
+            width: 24px;
+            height: 24px;
+          }
+        }
+      }
+    }
 }

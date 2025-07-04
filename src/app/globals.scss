@@ -17,13 +17,13 @@
 /* styles.css */
 
 #main-container {
+  margin-top: 77px;
   .main-container-top {
     display: flex;
     margin: 7px;
     gap: 7px;
-    min-height: 70vh;
-    max-height: 70vh;
-    margin-top: 97px;
+    min-height: 73vh;
+    max-height: 73vh;
   }
   .main-container-bottom {
     margin: 7px;
@@ -37,6 +37,16 @@
     padding: 0 10px;
   }
 }
+
+@media screen and (max-width: 749px) {
+    #main-container {
+      margin-top: 10;
+        .main-container-bottom {
+          display: none;
+        }
+    }
+}
+
 body {
   background-color: #10131c;
 

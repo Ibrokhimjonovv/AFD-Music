@@ -5,18 +5,19 @@ import Link from 'next/link';
 import { AccessContext } from '@/context/context';
 
 const PlayingSong = () => {
-    const { currentMusicCategory, musicCategories, playingSong } = useContext(AccessContext);
+    const { currentMusicCategory, musicCategories, playingSong, isRightPlayingSong, setIsRightPlayingSong } = useContext(AccessContext);
 
     const getCategoryName = (categoryId) => {
         const category = musicCategories.find(cat => cat.id === categoryId);
         return category ? category.title : "Loading...";
     };
 
+    if (!isRightPlayingSong) return null;
 
     return (
-        <div id='current-song'>
+        <div id='current-song' className={isRightPlayingSong ? "active" : ""}>
             <div className="bar">
-                <div className="playing-full-btn">
+                <div className="playing-full-btn" onClick={() => setIsRightPlayingSong(false)}>
                     <svg
                         data-encore-id="icon"
                         role="img"

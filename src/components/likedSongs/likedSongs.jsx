@@ -1,7 +1,8 @@
 'use client'
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import "./likedSongs.scss";
 import LikedSongsList from '../likedSongsList/likedSongsList';
+import { AccessContext } from '@/context/context';
 
 // SVG komponentlarini alohida yaratamiz
 const AddIcon = () => (
@@ -59,7 +60,7 @@ const LikedSongs = () => {
     const [activeOption, setActiveOption] = useState("Recents");
     const [showRecentModal, setShowRecentModal] = useState(false);
     const recentModal = useRef(null)
-
+    const { isSmaller, setIsSmaller } = useContext(AccessContext);
 
     const handleShowInput = () => {
         setShowInput(true);
@@ -95,10 +96,27 @@ const LikedSongs = () => {
     };
 
     return (
-        <div id='liked-container'>
+        <div id='liked-container' className={isSmaller ? "liked-container-active" : ""}>
             <div className="liked-top">
-                <p>Your Library</p>
-                <div className="liked-top-actions">
+                <div className="liked-full-btn" onClick={() => setIsSmaller(!isSmaller)}>
+                    <svg
+                        data-encore-id="icon"
+                        role="img"
+                        aria-hidden="true"
+                        className="e-9960-icon e-9960-baseline e-9960-icon--auto-mirror"
+                        viewBox="0 0 16 16"
+                        style={{
+                            '--encore-icon-height': 'var(--encore-graphic-size-decorative-smaller)',
+                            '--encore-icon-width': 'var(--encore-graphic-size-decorative-smaller)',
+                        }}
+                    >
+                        <path d="M10.03 10.53a.75.75 0 1 1-1.06-1.06L10.44 8 8.97 6.53a.75.75 0 0 1 1.06-1.06l2 2a.75.75 0 0 1 0 1.06z" />
+                        <path d="M15 16a1 1 0 0 0 1-1V1a1 1 0 0 0-1-1H1a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1zm-8.5-1.5v-13h8v13zm-1.5 0H1.5v-13H5z" />
+                    </svg>
+
+                </div>
+                <p className={isSmaller ? "hidden-action" : ""}>Your Library</p>
+                <div className={`liked-top-actions ${isSmaller ? "hidden-action" : ""}`}>
                     <button className="add-playlist-folder">
                         <AddIcon />
                     </button>
@@ -107,7 +125,12 @@ const LikedSongs = () => {
                     </button>
                 </div>
             </div>
-            <div className="liked-search-recents">
+            {
+                isSmaller && <button className="add-playlist-folder">
+                    <AddIcon />
+                </button>
+            }
+            <div className={`liked-search-recents ${isSmaller ? "hidden-action" : ""}`}>
                 <div className="liked-search" ref={searchRef}>
                     <button className="open-search-btn" onClick={handleShowInput}>
                         <SearchIcon />
@@ -145,7 +168,7 @@ const LikedSongs = () => {
                 }
             </div>
             <div className="list">
-                <LikedSongsList />
+                <LikedSongsList isSmaller={isSmaller} />
             </div>
         </div>
     )

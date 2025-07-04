@@ -70,6 +70,20 @@ const AccessProvider = ({ children }) => {
   const [currentMusicCategory, setCurrentMusicCategory] = useState(popularMusic[0].category)
   const [shuffleMode, setShuffleMode] = useState(false);
   const [playedShuffleIds, setPlayedShuffleIds] = useState([]);
+  const [isRightPlayingSong, setIsRightPlayingSong] = useState(true);
+  const [isSmaller, setIsSmaller] = useState(false);
+  const [likedSongs, setLikedSongs] = useState([]);
+
+  const toggleLike = (song) => {
+    setLikedSongs((prev) => {
+      const exists = prev.find((s) => s.id === song.id);
+      if (exists) {
+        return prev.filter((s) => s.id !== song.id);
+      } else {
+        return [...prev, song];
+      }
+    });
+  };
 
 
   const getSongsByCurrentCategory = () => {
@@ -213,8 +227,7 @@ const AccessProvider = ({ children }) => {
       });
     }
   }, [playingSong]);
-
-
+  
 
   return (
     <AccessContext.Provider
@@ -240,8 +253,13 @@ const AccessProvider = ({ children }) => {
         shuffleMode,
         setShuffleMode,
         playedShuffleIds,
-        setPlayedShuffleIds
-
+        setPlayedShuffleIds,
+        isRightPlayingSong,
+        setIsRightPlayingSong,
+        isSmaller,
+        setIsSmaller,
+        likedSongs, 
+        toggleLike
       }}
     >
       {children}
