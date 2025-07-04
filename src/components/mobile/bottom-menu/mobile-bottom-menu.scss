@@ -2,11 +2,13 @@
     position: fixed;
     bottom: 0;
     left: 0;
-    width: 100%;
+    width: calc(100% - 20px);
     display: flex;
     justify-content: space-between;
-    height: 60px;
+    height: 65px;
     background-color: #1b1f2a;
+    display: none;
+    margin: 0 10px;
 
     a {
         width: 25%;
@@ -26,5 +28,11 @@
                 height: 22px;
             }
         }
+    }
+}
+
+@media screen and (max-width: 749px) {
+    .mobile-bottome-menu {
+        display: flex;
     }
 }

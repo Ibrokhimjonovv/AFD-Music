@@ -3,14 +3,15 @@
   justify-content: center;
   flex-direction: column;
   width: calc(100% - 14px);
-  background-color: red;
+  background-color: #1b1f2a;
   height: 65px;
   position: fixed;
-  bottom: 65px;
+  bottom: 70px;
   left: 0;
   padding: 0 10px;
   margin: 0 7px;
   border-radius: 7px;
+  display: none;
 
   .full-line {
     width: 100%;
@@ -19,21 +20,26 @@
     align-items: center;
 
     .current-song-actions {
-      .add-to-liked {
+      display: flex;
+      gap: 10px;
+
+      .add-to-liked,
+      .control-btn {
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        width: 30px;
+        height: 30px;
+        color: #fff;
+        fill: #fff;
+        font-size: 22px;
         display: flex;
-        gap: 10px;
+        align-items: center;
+        justify-content: center;
 
-        button {
-          background-color: transparent;
-          border: none;
-          cursor: pointer;
-          width: 30px;
-          height: 30px;
-
-          svg {
-            width: 24px;
-            height: 24px;
-          }
+        svg {
+          width: 24px;
+          height: 24px;
         }
       }
     }
@@ -74,4 +80,10 @@
       }
     }
   }
+}
+
+@media screen and (max-width: 749px) {
+    .mini-player {
+        display: flex;
+    }   
 }
