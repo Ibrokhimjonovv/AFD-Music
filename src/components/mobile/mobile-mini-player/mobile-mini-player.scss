@@ -1,3 +1,11 @@
+.mini-p {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: calc(100% - 40px);
+  margin: 0 20px 15px;
+}
+
 .mini-player {
   display: flex;
   justify-content: center;
@@ -106,12 +114,12 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        height: 60px;
+        height: 65px;
         color: #fff;
         fill: #fff;
 
         .playlist-title {
-          font-size: 14px;
+          font-size: 15px;
         }
 
         button {
@@ -124,22 +132,22 @@
           justify-content: center;
 
           svg {
-            width: 24px;
-            height: 24px;
+            width: 28px;
+            height: 28px;
           }
         }
       }
 
       .current-song-img {
         width: 100%;
-        height: 280px;
+        height: 65%;
         display: flex;
-        align-content: space-between;
+        align-items: center;
         justify-content: center;
 
         img {
-          width: 50%;
-          max-height: 200px;
+          width: 75%;
+          // max-height: 200px;
           object-fit: contain;
         }
       }
@@ -150,6 +158,11 @@
         align-items: center;
         height: 60px;
         margin-top: 15px;
+        position: absolute;
+        left: 0;
+        bottom: 120px;
+        width: calc(100% - 40px);
+        margin: 0 20px;
 
         .song-texts {
           p {
@@ -192,7 +205,7 @@
         display: flex;
         flex-direction: column-reverse;
         justify-content: center;
-        row-gap: 5px;
+        row-gap: 5px !important;
         height: 100%;
         margin-top: 20px;
         row-gap: 25px;
@@ -209,8 +222,8 @@
           .repeat-song {
             background-color: transparent;
             border: none;
-            width: 30px;
-            height: 30px;
+            width: 35px;
+            height: 35px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -247,7 +260,7 @@
             }
 
             svg {
-              width: 22px;
+              width: 26px;
               fill: #b3b3b3;
             }
           }
@@ -269,9 +282,9 @@
             color: #000;
             border: none;
             border-radius: 50%;
-            width: 45px;
-            height: 45px;
-            font-size: 22px;
+            width: 55px;
+            height: 55px;
+            font-size: 28px;
             cursor: pointer;
             display: flex;
             justify-content: center;
