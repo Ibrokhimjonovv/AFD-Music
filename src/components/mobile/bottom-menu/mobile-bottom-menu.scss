@@ -2,13 +2,14 @@
     position: fixed;
     bottom: 0;
     left: 0;
-    width: calc(100% - 20px);
+    width: calc(100% - 14px);
     display: flex;
     justify-content: space-between;
     height: 65px;
     background-color: #1b1f2a;
     display: none;
-    margin: 0 10px;
+    margin: 0 7px 4px;
+    border-radius: 7px;
 
     a {
         width: 25%;
