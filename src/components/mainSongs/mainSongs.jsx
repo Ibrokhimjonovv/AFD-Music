@@ -6,7 +6,7 @@ import 'swiper/css';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { AccessContext } from '@/context/context';
 import YandexAdBanner2 from '../ad2/ad2';
-import YandexAdComponent3 from '../ad3/ad3';
+import YandexAd3 from '../ad3/ad3';
 
 const MainSongs = () => {
     const { togglePlayPause, currentSongId, isPlaying, popularMusic, isRightPlayingSong, isSmaller } = useContext(AccessContext);
@@ -250,8 +250,7 @@ const MainSongs = () => {
                     </div>
                 );
             })}
-
-            <YandexAdComponent3 />
+    <YandexAd3 />
 
         </div>
     )
