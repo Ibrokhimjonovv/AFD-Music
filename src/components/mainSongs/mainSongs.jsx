@@ -5,6 +5,8 @@ import Link from 'next/link';
 import 'swiper/css';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { AccessContext } from '@/context/context';
+import YandexAdBanner2 from '../ad2/ad2';
+import YandexAdComponent3 from '../ad3/ad3';
 
 const MainSongs = () => {
     const { togglePlayPause, currentSongId, isPlaying, popularMusic, isRightPlayingSong, isSmaller } = useContext(AccessContext);
@@ -191,6 +193,8 @@ const MainSongs = () => {
                 </div>
             </div>
 
+            <YandexAdBanner2 />
+
             {uniqueArtists.map((artistName) => {
                 const songsByArtist = popularMusic.filter(song => song.artist === artistName);
                 return (
@@ -247,6 +251,7 @@ const MainSongs = () => {
                 );
             })}
 
+            <YandexAdComponent3 />
 
         </div>
     )
