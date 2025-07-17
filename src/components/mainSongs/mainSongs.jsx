@@ -52,6 +52,9 @@ const MainSongs = () => {
         togglePlayPause(music);
     };
 
+    const uniqueArtists = [...new Set(popularMusic.map(song => song.artist))];
+
+
     return (
         <div id='main-songs' className={`${isRightPlayingSong ? "" : "main-active"} ${isSmaller ? "main-active-2" : ""}`}>
 
@@ -112,23 +115,6 @@ const MainSongs = () => {
                 <Link href='#'>Popular albums and Singles</Link>
                 <Link href="#">Show all</Link>
             </h1>
-
-            <div id="yandex_rtb_R-A-16144751-1">
-                <script
-                    dangerouslySetInnerHTML={{
-                        __html: `
-        window.yaContextCb = window.yaContextCb || [];
-        window.yaContextCb.push(() => {
-          Ya.Context.AdvManager.render({
-            "blockId": "R-A-16144751-1",
-            "renderTo": "yandex_rtb_R-A-16144751-1"
-          });
-        });
-      `,
-                    }}
-                />
-            </div>
-
 
             <div className="popular-albums-container">
                 <div className="swiper-controls">
@@ -204,6 +190,64 @@ const MainSongs = () => {
                     </button>
                 </div>
             </div>
+
+            {uniqueArtists.map((artistName) => {
+                const songsByArtist = popularMusic.filter(song => song.artist === artistName);
+                return (
+                    <div key={artistName}>
+                        <h1 className='name'>
+                            <Link href='#'>{artistName}</Link>
+                            <Link href="#">Show all</Link>
+                        </h1>
+
+                        <div className="popular-albums-container">
+                            <div className="swiper-controls">
+                                <Swiper
+                                    slidesPerView={3}
+                                    spaceBetween={10}
+                                    slidesPerGroup={1}
+                                    breakpoints={{
+                                        300: { slidesPerView: 2, spaceBetween: 10 },
+                                        640: { slidesPerView: 2, spaceBetween: 15 },
+                                        1024: { slidesPerView: 3, spaceBetween: 20 },
+                                        ...(!isRightPlayingSong && {
+                                            1024: { slidesPerView: 5, spaceBetween: 25 }
+                                        }),
+                                    }}
+                                >
+                                    {songsByArtist.map((music) => (
+                                        <SwiperSlide key={music.id}>
+                                            <div className={`popular-albums ${isRightPlayingSong ? "" : "w-100"}`}>
+                                                <Link href='#' className="song-container">
+                                                    <div className="discover-img">
+                                                        <img src={music.imageUrl} />
+                                                        <button
+                                                            className={`play-icon ${currentSongId === music.id && isPlaying ? 'playing' : ''}`}
+                                                            onClick={() => handleSongPlay(music)}
+                                                        >
+                                                            <svg data-encore-id="icon" role="img" aria-hidden="true" className="e-9960-icon e-9960-baseline" viewBox="0 0 24 24">
+                                                                {currentSongId === music.id && isPlaying ? (
+                                                                    <path d="M5.7 3a.7.7 0 0 0-.7.7v16.6a.7.7 0 0 0 .7.7h2.6a.7.7 0 0 0 .7-.7V3.7a.7.7 0 0 0-.7-.7H5.7zm10 0a.7.7 0 0 0-.7.7v16.6a.7.7 0 0 0 .7.7h2.6a.7.7 0 0 0 .7-.7V3.7a.7.7 0 0 0-.7-.7h-2.6z"></path>
+                                                                ) : (
+                                                                    <path d="m7.05 3.606 13.49 7.788a.7.7 0 0 1 0 1.212L7.05 20.394A.7.7 0 0 1 6 19.788V4.212a.7.7 0 0 1 1.05-.606z"></path>
+                                                                )}
+                                                            </svg>
+                                                        </button>
+                                                    </div>
+                                                    <p id='music-name'>{music.title}</p>
+                                                    <p id='music-author'>{music.artist}</p>
+                                                </Link>
+                                            </div>
+                                        </SwiperSlide>
+                                    ))}
+                                </Swiper>
+                            </div>
+                        </div>
+                    </div>
+                );
+            })}
+
+
         </div>
     )
 }

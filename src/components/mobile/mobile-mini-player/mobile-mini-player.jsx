@@ -185,7 +185,6 @@ const MobileMiniPlayer = () => {
                         </svg>
                     </button>
                 </div>
-
                 <div className="current-song-img">
                     <img src={playingSong?.imageUrl} alt="" />
                 </div>
@@ -370,7 +369,7 @@ const MobileMiniPlayer = () => {
 
 
 
-            {playingSong && (
+            {/* {playingSong && (
                 <audio
                     ref={audioRef}
                     src={playingSong}
@@ -391,7 +390,7 @@ const MobileMiniPlayer = () => {
 
 
                 />
-            )}
+            )} */}
         </div>
     )
 }

@@ -5,10 +5,11 @@ import './audioPlayer.scss';
 import { AccessContext } from '@/context/context';
 
 const AudioPlayer = () => {
-    const { playingSong, isPlaying, togglePlayPause, audioRef, setIsPlaying, playPreviousSong, playNextSong, isRepeat, setIsRepeat, isRepeatCount, setIsRepeatCount, shuffleMode, setShuffleMode, setPlayedShuffleIds, } = useContext(AccessContext);
-    const [progress, setProgress] = useState(0);
-    const [duration, setDuration] = useState(0);
-    const [currentTime, setCurrentTime] = useState(0);
+    const { playingSong, isPlaying, togglePlayPause, audioRef, setIsPlaying, playPreviousSong, playNextSong, isRepeat, setIsRepeat, isRepeatCount, setIsRepeatCount, shuffleMode, setShuffleMode, setPlayedShuffleIds, progress, setProgress,
+        duration,
+        currentTime,
+        handleTimeUpdate, setCurrentTime,
+    } = useContext(AccessContext);
 
     const progressBarRef = useRef(null);
 
@@ -22,17 +23,12 @@ const AudioPlayer = () => {
         }
     }, [isPlaying]);
 
+
     const handlePlayPause = () => {
         togglePlayPause(playingSong);
         setIsPlaying(!isPlaying)
     };
 
-    const handleTimeUpdate = () => {
-        const currentProgress = (audioRef.current.currentTime / audioRef.current.duration) * 100;
-        setProgress(currentProgress);
-        setCurrentTime(audioRef.current.currentTime);
-        setDuration(audioRef.current.duration);
-    };
 
     const handleProgressBarClick = (e) => {
         const progressBar = progressBarRef.current;
@@ -40,7 +36,6 @@ const AudioPlayer = () => {
         const progressBarWidth = progressBar.clientWidth;
         const seekPercentage = (clickPosition / progressBarWidth) * 100;
         const seekTime = (seekPercentage / 100) * duration;
-
         audioRef.current.currentTime = seekTime;
         setProgress(seekPercentage);
         setCurrentTime(seekTime);
@@ -180,13 +175,12 @@ const AudioPlayer = () => {
             {playingSong && (
                 <audio
                     ref={audioRef}
-                    src={playingSong}
+                    src={playingSong.audioUrl} // Make sure this is correct
                     onTimeUpdate={handleTimeUpdate}
                     onLoadedMetadata={handleTimeUpdate}
                     onEnded={() => {
                         if (isRepeat) {
                             if (isRepeatCount === 1) {
-                                // doimiy takror
                                 audioRef.current.currentTime = 0;
                                 audioRef.current.play();
                             }
@@ -195,8 +189,6 @@ const AudioPlayer = () => {
                             setIsPlaying(false);
                         }
                     }}
-
-
                 />
             )}
         </div>

@@ -170,6 +170,21 @@ const LikedSongs = () => {
             <div className="list">
                 <LikedSongsList isSmaller={isSmaller} />
             </div>
+            <div id="yandex_rtb_R-A-16144751-1">
+                <script
+                    dangerouslySetInnerHTML={{
+                        __html: `
+            window.yaContextCb = window.yaContextCb || [];
+            window.yaContextCb.push(() => {
+              Ya.Context.AdvManager.render({
+                "blockId": "R-A-16144751-1",
+                "renderTo": "yandex_rtb_R-A-16144751-1"
+              });
+            });
+          `,
+                    }}
+                />
+            </div>
         </div>
     )
 }
