@@ -41,10 +41,6 @@ export default function RootLayout({ children }) {
         <head>
           <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1980545331504061"
             crossorigin="anonymous"></script>
-          {/* YANDEX AD START */}
-          <script>window.yaContextCb=window.yaContextCb||[]</script>
-          <script src="https://yandex.ru/ads/system/context.js" async></script>
-          {/* YANDEX AD END */}
         </head>
         <body id='__next'>
           <ClientLayout>{children}</ClientLayout>
