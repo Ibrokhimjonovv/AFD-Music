@@ -5,6 +5,7 @@ import Link from 'next/link';
 import 'swiper/css';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { AccessContext } from '@/context/context';
+import { YandexRTB2 } from '../yandexAd/yandexAd';
 
 const MainSongs = () => {
     const { togglePlayPause, currentSongId, isPlaying, popularMusic, isRightPlayingSong, isSmaller } = useContext(AccessContext);
@@ -246,6 +247,10 @@ const MainSongs = () => {
                     </div>
                 );
             })}
+
+            <div className="ad-block">
+                <YandexRTB2 />
+            </div>
 
         </div>
     )

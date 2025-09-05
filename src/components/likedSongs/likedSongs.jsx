@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useRef, useState } from 'react';
 import "./likedSongs.scss";
 import LikedSongsList from '../likedSongsList/likedSongsList';
 import { AccessContext } from '@/context/context';
+import YandexRTB from '../yandexAd/yandexAd';
 
 // SVG komponentlarini alohida yaratamiz
 const AddIcon = () => (
@@ -169,6 +170,10 @@ const LikedSongs = () => {
             </div>
             <div className="list">
                 <LikedSongsList isSmaller={isSmaller} />
+            </div>
+
+            <div className="ad-block">
+                <YandexRTB />
             </div>
         </div>
     )

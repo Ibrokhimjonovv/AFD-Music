@@ -39,8 +39,8 @@ export default function RootLayout({ children }) {
     <AccessProvider>
       <html lang="en" className={`${poppins.variable}`}>
         <head>
-          <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1980545331504061"
-            crossorigin="anonymous"></script>
+          <script>window.yaContextCb=window.yaContextCb||[]</script>
+          <script src="https://yandex.ru/ads/system/context.js" async></script>
         </head>
         <body id='__next'>
           <ClientLayout>{children}</ClientLayout>
